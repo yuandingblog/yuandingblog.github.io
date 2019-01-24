@@ -73,7 +73,7 @@ END;
 ```
 解决方案：
 1. 删除触发器及存储过程，3个触发器，4个存储过程。
-2. 查找ORACHK'||SUBSTR(SYS_GUID,10)||'备份表，将数据进行还原即可恢复业务。
+2. 查找`ORACHK'||SUBSTR(SYS_GUID,10)||'`备份表，将数据进行还原即可恢复业务。
 
 ```
 DROP PROCEDURE "DBMS_SYSTEM_INTERNAL";
