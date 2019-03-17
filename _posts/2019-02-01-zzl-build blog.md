@@ -1,10 +1,10 @@
 ---  
 layout: post  
-title: "如何搭建个人博客系统"  
-subtitle: 利用github搭建私有博客系统  
+title: "利用github搭建一个免费的，无限流量的Blog"  
+subtitle: 利用jekyll+github pages搭建个人博客  
 date: 2019-02-01  
 author: "张志龙"  
-header-img: "img/post-bg-cka.jpg"  
+header-img: "img/post-bg-digital-native.jpg"  
 header-mask: "0.1"  
 catalog: True  
 tags:  
@@ -16,26 +16,31 @@ tags:
   - 图床  
 ---  
 
->　　在github中有很多博客项目，基本上都是以jekyll为模板，然后在做了很多定制，已经有大神制作了非常棒的模板，而且项目代码也是公开免费的，我们可以将代码fork到自己的代码仓库中，修改之后作为个人的博客系统使用。  
+>　不想再与主机服务商打交道?只用关心你的博客内容？GitHub Pages 可以运行 Jekyll, 你很简单就可以完全免费的在 GitHub 上发布网站无需数据库、评论功能，不需要不断的更新版本...  
 
 # 前言  
-　　搭建个人的博客系统，首先需要注册github帐号，并fork相关的项目代码，同时需要利用git工具将代码clone到本地，进行代码的修改。我们可以使用微软公司推出的vscode工具来修改代码和编辑博文，vscode中可以集成git、markdown、图床等插件，我们以后编写、发表博文，配置博客项目，都可以在vscode这一个工具中进行。当配置完成，或写完一篇博客时，如果直接上传到github上的博客系统，后续有修改时将会带来大量的commit操作，因此，我们需要一个本地环境jekyll来预览我们的博客系统效果。  
-　　总之，搭建个人的博客系统，大体上需要以下的步骤：  
-* 注册github帐号并fork博客系统项目代码  
-* 安装git工具并clone项目到本地  
-* 安装本地jekyll环境并预览项目  
-* 安装vscode工具并配置插件  
+
+jekyll是一个简单的免费的Blog生成工具，类似WordPress。但是和WordPress又有很大的不同，原因是jekyll只是一个生成静态网页的工具，不需要数据库支持。但是可以配合第三方服务,例如Disqus。最关键的是jekyll可以免费部署在Github上，而且可以绑定自己的域名。
+
+本文将介绍如何通过jekyll基于github搭建个人blog，同时介绍如何使用微软公司推出的vscode来编辑markdown格式的blog，vscode中可以集成git、markdown、图床等插件，我们以后编写、发表博文，配置博客项目，都可以在vscode这一个工具中进行。以及如何通过本地jekyll环境来预览我们的博客系统效果。大体需要以下的步骤：  
+* 注册github帐号并fork 已有jekyll模版项目  
+* 在个人电脑上安装git环境并clone项目到本地  
+* 安装本地jekyll环境  
+* 安装vscode工具并配置必要插件  
 * 修改博客项目配置并预览效果  
 * 推送最终的配置和博文到github  
 
-　　所需要的工具及功能如下：  
+所需要的工具及功能如下：  
 * **git**：下载、上传项目代码  
 * **vscode**：修改代码，编写博客  
 * **jekyll**：预览本地项目效果  
 
-　　如果无法从官方下载对应的软件，可以从我的网盘下载：链接: [https://pan.baidu.com/s/1PyBArQ5RlcKPIEdchigJcw](https://pan.baidu.com/s/1PyBArQ5RlcKPIEdchigJcw) 提取码: wnwy  
+如果无法从官方下载对应的软件，可以从我的网盘下载：链接: [https://pan.baidu.com/s/1PyBArQ5RlcKPIEdchigJcw](https://pan.baidu.com/s/1PyBArQ5RlcKPIEdchigJcw) 提取码: wnwy  
 
 # 一、注册github帐号并fork博客项目代码  
+
+> Github Pages 是面向用户、组织和项目开放的公共静态页面搭建托管服 务，站点可以被免费托管在 Github 上，你可以选择使用 Github Pages 默 认提供的域名 github.io 或者自定义域名来发布站点。
+
 　　首先我们需要注册一个github的帐号（注册地址：[https://github.com/](https://github.com/)），然后fork博客系统的项目代码到自己的github代码仓库中，这样我们就可以以自己的项目为基础，修改代码，上传自己的博文。如何修改代码，及如何写作博文，在后续的步骤中会有详细的介绍。  
 　　按照注册要求，填写对应的用户名、密码、邮箱等信息，并通过邮箱激活注册即可，具体的注册过程略。  
 　　注册好github帐号之后，访问公开的博客项目，这里我推荐使用黄玄的模板（[https://github.com/Huxpro/huxpro.github.io](https://github.com/Huxpro/huxpro.github.io)），里边集成了很多实用的功能，比如自定义域名、侧边栏、标签、评论等。我们只需对配置文件中的内容进行简单修改就可以使用了。  
@@ -113,7 +118,7 @@ tags:
   ruby dk.rb install  
   ```  
 
-* **安装jekyll**  
+* **安装本地jekyll环境**  
 　　依照如下步骤安装jekyll及所需的组件，后续可以在本地的博客项目目录中，启动jekyll服务预览博客系统。默认是通过 [http://127.0.0.1:4000](http://127.0.0.1:4000) 预览的。  
   ``` javascript  
   # 查看gem版本  
@@ -138,7 +143,7 @@ tags:
 
 
 # 四、安装VScode工具并配置插件  
-　　博客文件是用markdown写的，每一篇博客对应一个markdown文件，vscode工具支持编辑markdown文件，因此我们可以使用vscode工具来编辑博客，同时利用vscode中的插件来提高效率，比如说git插件、图床插件等等。  
+　　blog是用markdown写的，每一篇博客对应一个markdown文件，vscode工具支持编辑markdown文件，因此我们可以使用vscode工具来编辑博客，同时利用vscode中的插件来提高效率，比如说git插件、图床插件等等。  
 
 * **安装vscode**  
 　　从微软官网上下载vscode工具：[https://code.visualstudio.com/](https://code.visualstudio.com/)  
@@ -249,7 +254,7 @@ friends: [
     }  
 ]  
 ```  
-### 5.2 定制网页  
+### 5.2 定制个人blog属性  
 　　由于是要搭建个人的博客系统，因此博客网页中显示的字样及背景最好进行修改，尽量避免直接使用原作者的。  
 　　博客系统的主页（home）、个人简介页（about）、博文归档页面（archive），以及其他部分网页中有标题、描述、背景图片等内容是可以定制修改的.  
 　　以下为几个可定制网页的对照关系：  
@@ -276,8 +281,8 @@ multilingual: true
 　　**about网页中有评论区，如果不需要，可以删除”disqus 评论框”和 “disqus 公共JS代码”部分的代码。**  
 　　另外需要修改_includes/about文件夹中的zh.md和en.md文件内容，这两个文件均是个人简介的内容，中英文两份而已。  
 
-### 5.3 删除或替换原作者相关的博客和图片  
-　　博客系统放置博文的目录是_post，其中所有的markdown文件都是博文，正式使用前请删除原作者的博文。  
+### 5.3 替换原作者相关的博客和图片  
+　　博客系统放置博文的目录是_post，其中所有的markdown文件都是博文，正式使用前可以删除原作者的博文。  
 　　放置博客系统所需的图片的目录是img，需要替换的图片主要有两种，一种是原作者的头像文件需要替换为自己的，有三张图片，大家一看就知道了；另一种是网站网页的小图标：favicon.ico，可替换为自己的。  
 
 ### 5.4 编写自己的博客  
@@ -309,5 +314,5 @@ tags:                                 # 本篇博文的标签，该标签将在a
 ### 5.5 预览确认效果，并将项目代码同步到github  
 　　打开[http://127.0.0.1:4000](http://127.0.0.1:4000)，预览博客系统网页修改的效果，当所有的修改均完成后，便可以将项目代码同步到github中。  
 　　可以使用git命令的方式将代码同步到github，也可以使用vscode同步。  
-　　在vscode左侧的“source control”中可以看到当前项目中文件的状态，点击“**+**”将修改提交到暂存区（相当于 git add .），点击“**√**”将暂存区的内容提交到本地代码仓库中（相当于 git commit），最后点“推送”可将本地的代码仓库推送到远端的github代码仓库中，之后自己的博文就会发布到位于互联网上个人博客系统中了。  
-　　大家可以通过访问自己在github上的博客系统地址查看博客。例如： [https://pekinglone.github.io/](https://pekinglone.github.io/) 。  
+　　在vscode左侧的“source control”中可以看到当前项目中文件的状态，点击“**+**”将修改提交到暂存区（相当于 git add .），点击“**√**”将暂存区的内容提交到本地代码仓库中（相当于 git commit），最后点“推送”可将本地的代码仓库推送到远端的github代码仓库中，之后自己的博文就会发布到github上了。  
+　　大家可以通过访问自己的地址查看blog，我的blog [https://pekinglone.github.io/](https://pekinglone.github.io/) 。  
