@@ -1,7 +1,7 @@
 ---
 layout:     post
-title:     django celery动态设置周期任务执行时间
-subtitle:     蓝鲸paas平台app开发经验分享
+title:     Django配置celery执行动态周期任务
+subtitle:     蓝鲸PaaS平台app开发经验分享（1）
 date:       2019-03-20
 author:     贺洋
 header-img: img/post-bg-universe.jpg
@@ -12,7 +12,7 @@ tags:
     - PaaS
     - 元鼎
 ---
-> 本文主要介绍蓝鲸SaaS开发场景中，celery定时任务的简单使用。
+> 本文主要介绍蓝鲸SaaS开发场景中，celery定时任务的简单使用
 
 # 蓝鲸PaaS介绍
 
@@ -53,7 +53,14 @@ PaaS平台提供支持多语言的开发框架，助力运维人员能基于平�
 
 ![定时巡检设置](http://img.yuandingit.com/20190128155328189.png)
 
-# 实现方式
+# 定时巡检代码实现
+
+> celery是一个基于python开发的简单、灵活且可靠的分布式任务队列框架，支持使用任务队列的方式在分布式的机器/进程/线程上执行任务调度。采用典型的生产者-消费者模型，主要由三部分组成：
+> 1. 消息队列broker：broker实际上就是一个MQ队列服务，可以使用redis、rabbitmq等作为broker
+> 2. 处理任务的消费者workers：broker通知worker队列中有任务，worker去队列中取出任务执行，每一个worker就是一个进程
+> 3. 存储结果的backend：执行结果存储在backend，默认也会存储在broker使用的MQ队列服务中，也可以单独配置用何种服务做backend
+
+![celery_01](http://img.yuandingit.com/celery_01.png)
 
 针对以上需求，平时我们开发时使用periodic_task装饰器，程序启动后自动执行周期任务：
 
